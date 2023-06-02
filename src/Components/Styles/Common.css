@@ -1,0 +1,7 @@
+:root {
+    --panel-width: 200px;
+}
+
+body {
+    padding-left: calc(var(--panel-width) + 50px);
+}

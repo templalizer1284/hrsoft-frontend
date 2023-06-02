@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import PANEL from "./Components/Panel.js";
+
+import "./Components/Common.js";
+import { LOADING } from "./Components/Common.js";
+
+export default function App() {
+
+    const [content, setContent] = useState();
+    
+    return (
+	<div className="App">
+	    <PANEL setter={setContent} />
+	    {content}
+	</div>
+    );
 }
-
-export default App;
