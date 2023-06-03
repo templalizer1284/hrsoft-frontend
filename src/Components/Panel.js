@@ -14,17 +14,11 @@ function HRBackground() {
     );
 }
 
-function HRFooter() {
-    return(
-        <div id="HRFooter">
-	    <p style={{fontSize: 12}}>© Copyright Aleksandar M. 2023. This software is covered under <a id="footer_license" href="https://spdx.org/licenses/BSD-4-Clause.html">4-Clause BSD License.</a></p>
-	</div>
-    );
-}
-
 function HRRecruitForms(props) {
 
     const [sectors, setSectors] = useState(<option>None</option>);
+    const [roles, setRoles] = useState(<option>None</option>);
+    const [clients, setClients] = useState(<option>None</option>);
     const [RecruitNotif, setRecruitNotif] = useState();
     const [ModNotif, setModNotif] = useState();
 
@@ -32,7 +26,10 @@ function HRRecruitForms(props) {
 	inputDOB: useRef(null),
 	inputFirstName: useRef(null),
 	inputLastName: useRef(null),
-	inputSector: useRef(null)
+	inputSector: useRef(null),
+	inputClient: useRef(null),
+	inputRole: useRef(null),
+	inputPph: useRef(null)
     };
 
     const mod_refs = {
@@ -42,7 +39,7 @@ function HRRecruitForms(props) {
 
     useEffect(() => {
 	const interval = setInterval(() => {
-	    axios.get("/api/sectors/get")
+	    axios.get("/api/sector/get")
 		.then((res) => {
 		    setSectors(() => {
 			return(
@@ -58,7 +55,9 @@ function HRRecruitForms(props) {
 		.catch((err) => {
 		    console.log(err.message);
 		})
-	}, 1000);
+
+	    axios.get("/api/roles")
+	}, 1500);
 
 	return () => {
 	    clearInterval(interval);
@@ -94,6 +93,10 @@ function HRRecruitForms(props) {
 	refs.inputFirstName.current.value = "";
 	refs.inputLastName.current.value = "";
 	refs.inputSector.current.value = "";
+	refs.inputPph.current.value = "";
+	refs.inputClient.current.value = "";
+	refs.inputRole.current.value = "";
+
     }
 
     function modify() {
@@ -131,6 +134,24 @@ function HRRecruitForms(props) {
 		<div className="HRForm">
                     <label for="last_name">Last Name: </label>
 		    <input ref={refs.inputLastName} name="last_name" type="text"/>
+		</div>
+		<div className="HRForm">
+                    <label for="sector">Sector: </label>
+                    <select ref={refs.inputSector} name="sector">
+			{sectors}
+                    </select>
+		</div>
+		<div className="HRForm">
+                    <label for="role">Role: </label>
+                    <select ref={refs.inputRole} name="role">
+			{roles}
+                    </select>
+		</div>
+		<div className="HRForm">
+                    <label for="sector">Sector: </label>
+                    <select ref={refs.inputSector} name="sector">
+			{sectors}
+                    </select>
 		</div>
 		<div className="HRForm">
                     <label for="sector">Sector: </label>
@@ -319,7 +340,7 @@ function HRListExpenses() {
 		.catch((err) => {
 		    setExpensesNotif(err.message);
 		});
-	}, 1000);
+	}, 1500);
 
 	return () => {
 	    clearInterval(interval);
@@ -467,6 +488,62 @@ function HRExpensesInvoice() {
     );
 }
 
+function HRSectorsManage() {
+
+    const sector_refs = {
+	add_name: useRef(null),
+	remove_name: useRef(null)
+    };
+
+    const [notif, setNotif] = useState();
+
+    function add() {
+	let data = new FormData();
+	data.append("name", sector_refs.add_name.current.value);
+	axios.post("/api/sector/add", data)
+	    .then((res) => {
+		setNotif(res.data);
+	    })
+	    .catch((err) => {
+		setNotif(err.message);
+	    });
+    }
+    
+    function remove() {
+	
+    }
+    
+    return(
+        <div id="HRSectorManage">
+            <div className="FormEntry">
+                <h2>Add Sector</h2>
+                <div className="HRForm">
+                    <label for="sector_name">Name</label>
+                    <input name="sector_name" type="text" ref={sector_refs.add_name}/>
+		</div>
+	    </div>
+            <div className="button-center">
+                <button className="content_button" onClick={add}>
+		    Add Sector
+		</button>
+	    </div>
+            <div className="FormEntry">
+                <h2>Remove Sector</h2>
+                <div className="HRForm">
+                    <label for="sector_remove_name">Name</label>
+                    <input name="sector_remove_name" type="text" ref={sector_refs.remove_name} />
+		</div>
+	    </div>
+            <div className="button-center">
+                <button className="content_button" onClick={remove}>
+		    Remove Sector
+		</button>
+	    </div>
+	    {notif}
+	</div>
+    );
+}
+
 function HRExpensesManage() {
 
     const [AddNotif, setAddNotif] = useState();
@@ -595,6 +672,15 @@ export default function PANEL(props) {
 		/>
 	    </div>
 
+            <p className="HRPanelCategory">Sectors/Roles</p>
+            <div classname="HRPanelButtonSection">
+		<HRPanelButton
+		    name="Manage Sectors"
+		    setter={props.setter}
+		    content={<HRSectorsManage />}
+		/>
+	    </div>
+	    
             <p className="HRPanelCategory">Expenses</p>
 	    <div className="HRPanelButtonSection">
 		<HRPanelButton
