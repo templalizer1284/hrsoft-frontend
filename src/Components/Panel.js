@@ -56,7 +56,45 @@ function HRRecruitForms(props) {
 		    console.log(err.message);
 		})
 
-	    axios.get("/api/roles")
+	    axios.get("/api/role/get")
+		.then((res) => {
+		    setRoles(() => {
+			return(
+			    <>
+				{res.data.map( ({id,name}) => (
+                                    <option key={"role_key-".concat(id)} value={name}>{name}</option>
+				))}
+			    </>
+			);
+		    });
+		})
+	    
+		.catch((err) => {
+		    setRecruitNotif(err.message);
+		});
+
+	    let client_data = {
+		params: {
+		    all: true
+		}
+	    };
+	    
+	    axios.get("/api/client/get", client_data)
+		.then((res) => {
+		    setClients(() => {
+			return(
+			    <>
+				{res.data.map(({id,name,noe}) => (
+                                    <option key={"client_key-".concat(id)} value={name}>name</option>
+				))}
+			    </>
+			);
+		    });
+		})
+	    
+		.catch((err) => {
+		    setRecruitNotif(err.message);
+		});
 	}, 1500);
 
 	return () => {
@@ -148,15 +186,9 @@ function HRRecruitForms(props) {
                     </select>
 		</div>
 		<div className="HRForm">
-                    <label for="sector">Sector: </label>
-                    <select ref={refs.inputSector} name="sector">
-			{sectors}
-                    </select>
-		</div>
-		<div className="HRForm">
-                    <label for="sector">Sector: </label>
-                    <select ref={refs.inputSector} name="sector">
-			{sectors}
+                    <label for="client">Client: </label>
+                    <select ref={refs.inputClient} name="client">
+			{clients}
                     </select>
 		</div>
                 <div className="button-center">
@@ -280,7 +312,7 @@ function HREmployeeList() {
     
     useEffect(() => {
 	const interval = setInterval(() => {
-	    axios.get("/api/employee/get_employees")
+	    axios.get("/api/employee/get")
 		.then((res) => {
 		    setContent(() => {
 			return(
@@ -496,6 +528,28 @@ function HRSectorsManage() {
     };
 
     const [notif, setNotif] = useState();
+    const [sectors, setSectors] = useState(<option>None</option>);
+
+    useEffect(() => {
+	const interval = setInterval(() => {
+	    axios.get("/api/sector/get")
+		.then((res) => {
+		    setSectors(() => {
+			return(
+			    <>
+				{res.data.map(({id,name}) => (
+                                    <option key={"sector_remove_key-".concat(id)} value={name}>{name}</option>
+				))}
+			    </>
+			);
+		    });
+		})
+	    
+		.catch((err) => {
+		    setNotif(err.message);
+		});
+	}, 1000);
+    }, []);
 
     function add() {
 	let data = new FormData();
@@ -530,8 +584,10 @@ function HRSectorsManage() {
             <div className="FormEntry">
                 <h2>Remove Sector</h2>
                 <div className="HRForm">
-                    <label for="sector_remove_name">Name</label>
-                    <input name="sector_remove_name" type="text" ref={sector_refs.remove_name} />
+		    <label for="sector_remove_name">Sector: </label>
+                    <select ref={sector_refs.remove_name} name="sector_remove_name">
+			{sectors}
+                    </select>
 		</div>
 	    </div>
             <div className="button-center">

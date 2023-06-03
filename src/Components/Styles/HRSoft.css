@@ -257,3 +257,16 @@
     position: relative;
     width: 400px;
 }
+
+
+#HRSectorManage {
+    width: 340px;
+}
+
+#HRSectorManage .button-center {
+    margin-top: 10px;
+}
+
+#HRSectorManage .HRForm input {
+    width: 200px;
+}
