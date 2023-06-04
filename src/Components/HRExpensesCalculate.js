@@ -22,15 +22,15 @@ export default function HRExpensesCalculate() {
 	    .then((res) => {
 		setNotif(() => {
 		    return(
-                            <div style={{fontSize: 22, width: 500,
-					 borderStyle: "dotted",
-					 borderWidth: 5,
-					 borderColor: "black",
-					 borderRadius: 5,
-					 position: "absolute",
-					 top: 250}}>
+                        <div style={{fontSize: 22, width: 500,
+				     borderStyle: "dotted",
+				     borderWidth: 5,
+				     borderColor: "black",
+				     borderRadius: 5,
+				     position: "absolute",
+				     top: 250}}>
 			    Expenses are <div style={{ display: "inline-block",fontWeight: "bold"}}>{res.data}</div> ¤.
-			    </div>
+			</div>
 		    );
 		});
 	    })
@@ -40,35 +40,35 @@ export default function HRExpensesCalculate() {
     }
     
     return(
-            <div id="HRExpensesCalculate">
+        <div id="HRExpensesCalculate">
             <h2>Calculate expenses by month:</h2>
             <div style={{margin: 10, fontSize: 15}}>These expenses consist of all employees salaries plus general daily expenses.</div>
             <div className="FormEntry">
-            <div className="HRForm">
-            <label for="exp_calc">Select month: </label>
-            <select ref={refs.inputMonth} name="exp_calc">
-            <option value="100">CURRENT</option>
-	    <option value="1">1</option>
-	    <option value="2">2</option>
-	    <option value="3">3</option>
-	    <option value="4">4</option>
-	    <option value="5">5</option>
-	    <option value="6">6</option>
-	    <option value="7">7</option>
-	    <option value="8">8</option>
-	    <option value="9">9</option>
-	    <option value="10">10</option>
-	    <option value="11">11</option>
-	    <option value="12">12</option>
-            </select>
+		<div className="HRForm">
+		    <label for="exp_calc">Select month: </label>
+		    <select ref={refs.inputMonth} name="exp_calc">
+			<option value="100">CURRENT</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+		    </select>
+		</div>
+		<div className="button-center ">
+		    <button className="content_button" onClick={calculate}>
+			Calculate
+		    </button>
+		</div>
+		{notif}
 	    </div>
-            <div className="button-center ">
-            <button className="content_button" onClick={calculate}>
-	    Calculate
-	</button>
-	    </div>
-	    {notif}
 	</div>
-	    </div>
     );
 }
