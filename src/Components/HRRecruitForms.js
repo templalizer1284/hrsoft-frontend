@@ -24,7 +24,10 @@ export default function HRRecruitForms(props) {
 
     const mod_refs = {
 	inputId: useRef(null),
-	inputSector: useRef(null) 
+	inputSector: useRef(null),
+	inputPph: useRef(null),
+	inputRole: useRef(null),
+	inputClient: useRef(null)
     };
 
     useEffect(() => {
@@ -121,17 +124,14 @@ export default function HRRecruitForms(props) {
     function modify() {
 	setModNotif(<LOADING />);
 	
-	let data = {
-	    params: {
-		id: mod_refs.inputId.current.value,
-		sector: mod_refs.inputSector.current.value,
-		role: mod_refs.inputRole.current.value,
-		pph: mod_refs.inputPph.current.value
-	    }
-	};
+	let data = new FormData();
+	data.append("id", mod_refs.inputId.current.value);
+	data.append("sector", mod_refs.inputSector.current.value);
+	data.append("role", mod_refs.inputRole.current.value);
+	data.append("pph", mod_refs.inputPph.current.value);
+	data.append("client", mod_refs.inputClient.current.value);
 
-	axios.get("/api/employee/modify",
-		  data)
+	axios.patch("/api/employee/modify", data)
 	    .then((res) => {
 		setModNotif(res.data);
 	    })
@@ -235,6 +235,10 @@ export default function HRRecruitForms(props) {
                     <select ref={mod_refs.inputClient} name="client">
 			{clients}
                     </select>
+		</div>
+                <div className="HRForm">
+                    <label for="pph">Hourly price: </label>
+                    <input name="pph" type="number" ref={mod_refs.inputPph} />
 		</div>
 		{emp}
                 <div className="button-center">
