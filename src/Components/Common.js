@@ -1,5 +1,3 @@
-import "./Common.js";
-
 import "./Styles/HRSoft.css";
 import LoadingGIF from "../Media/loading.gif";
 import WarningSVG from "../Media/warning.svg";
