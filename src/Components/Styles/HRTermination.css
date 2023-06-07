@@ -1,0 +1,12 @@
+@import "Common.css";
+
+#HRTermination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+}
+
+#HRTimeOff {
+    width: 350px;
+}

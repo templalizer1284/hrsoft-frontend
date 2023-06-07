@@ -1,0 +1,30 @@
+@import "Common.css";
+
+#HREmployeeList {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 800px;
+    row-gap: 20px;
+}
+
+.employee_list_entry {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border-style: solid;
+    border-color: var(--purple-base);
+    border-width: 2px;
+    border-radius: 3px;
+    transition: 0.2s;
+}
+
+.employee_list_entry:hover {
+    border-color: black;
+    border-style: dotted;
+}
+
+.employee_list_entry > p {
+    font-size: 15px;
+    font-color: black;
+}

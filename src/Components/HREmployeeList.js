@@ -3,6 +3,8 @@ import { LOADING } from "./Common.js";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 
+import "./Styles/HREmployeeList.css";
+
 export default function HREmployeeList() {
 
     const [content, setContent] = useState(<LOADING />);

@@ -7,6 +7,8 @@ import { LOADING } from "./Components/Common.js";
 
 import HRBackgroundImage from "./Media/hs_background.svg";
 
+import "./Components/Styles/Common.css";
+
 function HRBackground() {
     return(
         <div id="HRBackground">

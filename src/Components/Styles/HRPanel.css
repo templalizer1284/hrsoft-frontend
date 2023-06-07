@@ -1,0 +1,64 @@
+@import "Common.css";
+
+#HRPanel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--panel-width);
+    background-color: var(--purple-base);
+    padding-left: 10px;
+    padding-top: 10px;
+    display: flex;
+    row-gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+}
+
+#HRPanelHead {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-left: 10px;
+    transition: text-shadow 0.2s;
+    user-select: none;
+    color: var(--white-header);
+    text-decoration: none;
+}
+
+.HRPanelButtonSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#HRPanelHead:hover {
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.HRPanelButton {
+    background-color: #C3ACD0;
+    color: var(--white-header);
+    text-shadow: 0 0 5px rgba(0,0,0,1);
+    padding: 10px 20px 10px 20px;
+    user-select: none;
+    width: 100px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.HRPanelButton:hover {
+    opacity: 0.8;
+}
+
+.HRPanelButton:active {
+    opacity: 1.0;
+}
+
+.HRPanelCategory {
+    font-size: 20px;
+    font-weight: bold;
+    align-self: flex-start;
+    color: var(--white-cream);
+}

@@ -1,7 +1,168 @@
 :root {
     --panel-width: 200px;
+    --white-background: #F7EFE5;
+    --white-header: #EEEEEE;
+    --purple-base: #674188;
+    --white-cream: #FFEEAA;
 }
 
 body {
     padding-left: calc(var(--panel-width) + 50px);
+}
+
+#HRSoft {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--white-background);;
+    font-family: Roboto;
+}
+
+#HRSoft p {
+    color: var(--white-background);;
+    font-size: 20px;
+}
+
+#HRSoft input, #HRSoft select {
+    font-size: 15px;
+    padding: 2px 3px 2px 3px;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 3px;
+    border-color: mediumslateblue;
+}
+
+#HRBackground {
+    opacity: 0.2;
+    filter: grayscale(100%);
+    z-index: -10;
+    position: fixed;
+    bottom: -100px;
+    right: 0;
+    user-select: none;
+}
+
+#HRMainContent {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding-left: 250px;
+    padding-top: 50px;
+    z-index: -1;
+}
+
+.FormEntry { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 10px;
+    width: inherit;
+}
+
+.FormEntry input {
+    width: 230px;
+}
+
+.HRForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content_button {
+    color: white;
+    background-color: var(--purple-base);
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 20px 10px 20px;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.content_button:hover {
+    opacity: 0.8;
+}
+
+.content_button:active {
+    opacity: 1.0;
+}
+
+#HRExpensesManage, #HRExpensesInvoice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    padding-left: 50px;
+    width: 750px;
+}
+
+.loading {
+    position: relative;
+}
+
+.loading img{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+#warning_overlay {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    align-items: center;
+    transition: opacity 0.1s;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+}
+
+#warning_text {
+    color: #EA0000;
+    background-color: rgba(0,0,0,0.8);
+    opacity: 0.0;
+    transition: opacity 0.2s;
+    position: absolute;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    margin-left: 50px;
+}
+
+.warning img{
+    width: 30px;
+    height: 30px;
+}
+
+#HRListExpenses {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+#HRExpensesCalculate {
+    position: relative;
+    width: 400px;
+}
+
+#HRSectorManage {
+    width: 340px;
+}
+
+#HRSectorManage .button-center {
+    margin-top: 10px;
+}
+
+#HRSectorManage .HRForm input {
+    width: 200px;
+}
+
+#HRManageClients {
+    width: 340px;
+}
+
+#HRManageRoles {
+    width: 340px;
 }

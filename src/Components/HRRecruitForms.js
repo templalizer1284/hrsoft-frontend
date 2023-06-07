@@ -3,6 +3,8 @@ import { LOADING } from "./Common.js";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 
+import "./Styles/HRRecruitForms.css";
+
 export default function HRRecruitForms(props) {
 
     const [sectors, setSectors] = useState(<option>None</option>);
@@ -98,13 +100,13 @@ export default function HRRecruitForms(props) {
     function recruit() {
 	setRecruitNotif(<LOADING />);
 	let data = {
-		dob: refs.inputDOB.current.value,
-		first_name: refs.inputFirstName.current.value,
-		last_name: refs.inputLastName.current.value,
-		sector: refs.inputSector.current.value,
-		role: refs.inputRole.current.value,
-		pph: refs.inputPph.current.value,
-		client: refs.inputClient.current.value
+	    dob: refs.inputDOB.current.value,
+	    first_name: refs.inputFirstName.current.value,
+	    last_name: refs.inputLastName.current.value,
+	    sector: refs.inputSector.current.value,
+	    role: refs.inputRole.current.value,
+	    pph: refs.inputPph.current.value,
+	    client: refs.inputClient.current.value
 	};
 	
 	axios.post("/api/employee/recruit", data)
@@ -203,11 +205,28 @@ export default function HRRecruitForms(props) {
 					   return(
                                                <div>
                                                    <p style={{fontWeight: "bold"}}>Current contract: </p>
-                                                   <div>{res.data.first_name} {res.data.last_name}</div>
-                                                   <div>{res.data.sector}</div>
-                                                   <div>{res.data.role}</div>
-                                                   <div>{res.data.client}</div>
-                                                   <div>{res.data.pph}¤</div>
+                                                   <table>
+                                                       <tr>
+                                                           <th>Name:</th>
+                                                           <td>{res.data.first_name} {res.data.last_name}</td>
+                                                       </tr>
+                                                       <tr>
+                                                           <th>Sector: </th>
+                                                           <td>{res.data.sector}</td>
+                                                       </tr>
+                                                       <tr>
+                                                           <th>Role: </th>
+                                                           <td>{res.data.role}</td>
+                                                       </tr>
+                                                       <tr>
+                                                           <th>Client: </th>
+                                                           <td>{res.data.client}</td>
+                                                       </tr>
+                                                       <tr>
+                                                           <th>Hourly rate: </th>
+                                                           <td>{res.data.pph}¤</td>
+                                                       </tr>
+	                                           </table>
 					       </div>
 					   );
 				       })

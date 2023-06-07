@@ -15,6 +15,10 @@ import HRSectorsManage from "./HRSectorsManage.js";
 import HRExpensesManage from "./HRExpensesManage.js";
 import HRManageClients from "./HRManageClients.js";
 import HRRolesManage from "./HRRolesManage.js";
+import HRIncomeCalculate from "./HRIncomeCalculate.js";
+import HRIncomeManage from "./HRIncomeManage.js";
+
+import "./Styles/HRPanel.css";
 
 export default function PANEL(props) {
     return(
@@ -104,6 +108,22 @@ export default function PANEL(props) {
 		/>
 	    </div>
 
+            <p className="HRPanelCategory">Income</p>
+            <div className="HRPanelButtonSection">
+		<HRPanelButton
+		    name="Calculate income"
+		    setter={props.setter}
+		    content={<HRIncomeCalculate />}
+		/>
+	    </div>
+
+	    <div className="HRPanelButtonSection">
+		<HRPanelButton
+		    name="Manage Income"
+		    setter={props.setter}
+		    content={<HRIncomeManage />}
+		/>
+	    </div>
 	</div>
     );
 }

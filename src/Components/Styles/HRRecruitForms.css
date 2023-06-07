@@ -1,0 +1,14 @@
+@import "Common.css";
+
+#HRRecruitForms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1000px;
+    column-gap: 200px;
+    height: 400px;
+}
+
+#HRRecruitForms table th {
+    background-color: red;
+}

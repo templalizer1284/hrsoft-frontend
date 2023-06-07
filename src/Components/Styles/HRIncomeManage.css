@@ -1,0 +1,6 @@
+@import "Common.css";
+
+#HRIncomeManage {
+    width: 400px;
+    row-gap: 10px;
+}
